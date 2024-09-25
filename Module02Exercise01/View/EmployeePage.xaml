@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Module02Exercise01.View.EmployeePage"
+             Title="EmployeePage">
+    <ContentPage.Background>
+        <LinearGradientBrush EndPoint="0,1">
+            <GradientStop Color="#2196F3" Offset="0.0" />
+            <GradientStop Color="#64B5F6" Offset="1.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20">
+
+            <!-- Manager Section -->
+            <Label Text="Manager" FontSize="24" FontAttributes="Bold" />
+            <Label Text="{Binding ManagerName}" FontSize="20" />
+
+            <!-- Load Manager Data Button -->
+            <Button Text="Load Manager Data" Command="{Binding LoadEmployeeDataCommand}" />
+
+            <!-- List of Employees -->
+            <Label Text="Employees" FontSize="24" FontAttributes="Bold" />
+            <ListView ItemsSource="{Binding Employees}" HeightRequest="200">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Padding="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Text="{Binding FullName}" Grid.Column="0" FontSize="18" VerticalOptions="Center" />
+                                <Label Text="{Binding Position}" Grid.Column="1" FontSize="18" VerticalOptions="Center" />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <!-- Add New Employee Section -->
+            <Label Text="Add New Employee" FontSize="24" FontAttributes="Bold" />
+
+            <!-- Employee Data Entry Fields -->
+            <Entry Placeholder="First Name" Text="{Binding NewEmployeeFirstName}" />
+            <Entry Placeholder="Last Name" Text="{Binding NewEmployeeLastName}" />
+            <Entry Placeholder="Full Name" Text="{Binding NewEmployeeFullName}" IsReadOnly="True" />
+            <Entry Placeholder="Municipality" Text="{Binding NewEmployeeMunicipality}" IsReadOnly="True" />
+            <Entry Placeholder="Province" Text="{Binding NewEmployeeProvince}" IsReadOnly="True" />
+            <Label Text="Coordinates:" FontAttributes="Bold"/>
+            <Label Text="{Binding LocationCoordinates}" FontSize="16" />
+
+            <!-- Position and Department -->
+            <Entry Placeholder="Position" Text="{Binding NewEmployeePosition}" />
+            <Entry Placeholder="Department" Text="{Binding NewEmployeeDepartment}" />
+
+            <!-- Capture Photo and Location -->
+            <Button Text="Take Employee Photo" Command="{Binding TakePhotoCommand}" />
+            <Image Source="{Binding CapturedPhoto}" HeightRequest="200" />
+            <Button Text="Get Location" Command="{Binding GetLocationCommand}" />
+
+            <!-- Add Employee Button -->
+            <Button Text="Add Employee" Command="{Binding AddEmployeeCommand}" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
